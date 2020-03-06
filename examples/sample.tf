@@ -9,9 +9,13 @@ resource azurerm_resource_group resource_group {
 }
 
 module acr {
-  source = "git::https://github.com/yardbirdsax/terraform-azure-container-registry?ref=1.0"
+  source = "git::https://github.com/yardbirdsax/terraform-azure-container-registry?ref=1.1"
   resource_group_name = azurerm_resource_group.resource_group.name
   registry_name = "jeftestacr"
   location = "eastus2"
   sku_name = "Basic"
+}
+
+output registry {
+  value = module.acr.registry
 }
